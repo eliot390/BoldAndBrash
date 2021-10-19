@@ -1,0 +1,201 @@
+/* GLOBAL CSS */
+
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	background-image: url('i5s306a.png');
+	color: rgb(180, 255, 176);
+}
+
+.login {
+	position: absolute;
+	display: inline-block;
+	top: 30%;
+	width: 40%;
+}
+
+.field:focus {
+	outline: none;
+	border-style: solid;
+	border-color: #A7BBFF;
+	border-radius: 12px;
+	border-width: 2px;
+}
+
+.field {
+	position: relative;
+	height: 30px;
+	width: 100%;
+	max-width: 400px;
+	min-width: 200px;
+	border-style: solid;
+	border-color: #C4C4C4;
+	border-radius: 12px;
+	border-width: 2px;
+	text-indent: 2%;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.incorrectUOrP {
+	visibility: hidden;
+	color: #3A3A3A;
+	position: relative;
+	text-align: center;
+	padding-top: 7px;
+	background-color: #FFADAD;
+	border-radius: 12px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #FF0000;
+	width: 100%;
+	max-width: 400px;
+	min-width: 200px;
+	height: 35px;
+	font-size: 20px;
+}
+
+.button:focus {
+	outline: none;
+	border-style: solid;
+	border-color: #A7BBFF;
+	border-radius: 12px;
+	border-width: 2px;
+	background-color: #CFDAFF;
+}
+
+.button {
+	position: relative;
+	border-style: solid;
+	border-color: #C4C4C4;
+	border-radius: 12px;
+	border-width: 2px;
+	background-color: white;
+	width: 100%;
+	max-width: 400px;
+	min-width: 200px;
+	font-size: 20px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin-bottom: -6px;
+}
+
+#logged-in {
+	background-color: rgba(212, 237, 219, 0.9);
+	color: rgba(21, 86, 78, 1);
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
+
+#title {
+	padding-left: 20px;
+  font-size: 50px;
+  font-weight: bold;
+	color: rgb(180, 255, 176);
+}
+
+#user-info {
+	padding-right: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: end;
+}
+
+#main {
+	display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#contact_info {
+	font-size: 20px;
+}
+
+#heading {
+	border-bottom: 1px;
+}
+
+#main-menu {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	padding-top: 20px;
+	color: rgb(180, 255, 176);
+}
+
+#menu-options {
+	color: rgb(255, 251, 0);
+	font-size: 20px;
+	font-weight: lighter;
+}
+
+#required {
+	color: red;
+}
+
+#subtext {
+	font-size: 12px;
+	color: rgb(150, 150, 150);
+	font-weight: normal;
+}
+
+.btn-default {
+	background-color: rgb(150, 150, 150);
+	color: rgb(255, 255, 255);
+}
+
+/****** PAGE SPECIFIC CSS ******/
+
+/** login.html **/
+#loginBlock {
+	display: flex;
+}
+#loginHeading {
+	font-size: 20px;
+	text-align: center;
+}
+
+h1, h5 {
+	padding-top: 20px;
+	color: rgb(249, 252, 16);
+}
+
+#submit {
+	padding-top: 20px;
+}
+
+/** addresource.html **/
+#ARtitle {
+	font-size: 30px;
+	font-weight: bold;
+	color: rgb(249, 255, 14);
+}
+
+#close {
+	border-radius: 20px;
+	color: white;
+	background-color: black;
+}
+
+#tableHeading {
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 20px;
+	color: rgb(249, 255, 14);
+}
+
+#tableHeading1 {
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	color: rgb(249, 255, 14);
+}
+
+#cancelSave {
+	display: flex;
+	justify-content: flex-end;
+}
