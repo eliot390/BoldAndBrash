@@ -38,6 +38,7 @@ function Buyer(fullName, username, address, password) {
         }
     }
 
+
     Buyer.prototype.setBidder = function(bid, painting){
         for(let i = 0; i < bidArrays.length; i++){
             if(painting ===bidArrays[i].name && bidArrays[i].price < bid){
