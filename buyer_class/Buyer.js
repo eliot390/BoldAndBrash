@@ -2,13 +2,24 @@
 const {Painting} = require('./TestPainting.js');
 function Buyer(fullName, username, address, password) {
 
-    const bidArrays = [];
-    this.fullName = fullName;
-    this.username = username;
-    this.address = address;
-    this.password = password;
+    const bidArrays = [];           //For bids on paintings
+    const orders = [];              //For successful orders
+    this.fullName = fullName;       //Full name for buyer
+    this.username = username;       //Username for buyer
+    this.address = address;         //Address for buyer
+    this.password = password;       //Password for buyer
 
-    Buyer.prototype.printBuyer = function(){
+    Buyer.prototype.printOrders = function() {
+        for(let i = 0; i < orders.length; i++) {
+            console.log(orders[i].name);
+        }
+    }
+
+    Buyer.prototype.insertOrders = function(painting) {
+        orders.push(painting);
+    }
+
+    Buyer.prototype.printBuyer = function() {
 
         console.log("Full Name: " + fullName);
         console.log("Username: " + username);
@@ -39,7 +50,7 @@ function Buyer(fullName, username, address, password) {
     }
 
 
-    Buyer.prototype.setBidder = function(bid, painting){
+    Buyer.prototype.setBidder = function(bid, painting) {
         for(let i = 0; i < bidArrays.length; i++){
             if(painting ===bidArrays[i].name && bidArrays[i].price < bid){
                 bidArrays[i].setBidder(bid);
@@ -69,4 +80,5 @@ console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 Dave.setBidder(6900000, "Painting of Obama");
 Dave.setBidder(420, "Mona Lisa");
 Dave.removeBidItem("Scream");
-Dave.printBuyer();
+Dave.insertOrders(Scream);
+Dave.printOrders();
