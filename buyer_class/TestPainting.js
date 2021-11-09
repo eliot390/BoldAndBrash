@@ -1,3 +1,5 @@
+/* pull request */
+
 function Painting(name, price, highestBid){
 
     this.name = name;
