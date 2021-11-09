@@ -1,5 +1,5 @@
 
-const {Painting} = require('./TestPainting.js');
+
 function Buyer(fullName, username, address, password) {
 
     this.bidArrays = [];           //For bids on paintings
@@ -10,6 +10,10 @@ function Buyer(fullName, username, address, password) {
     this.password = password;       //Password for buyer
 
     Buyer.prototype.printOrders = function() {
+        console.log("Orders: ");
+        if(this.orders.length == 0) {
+            console.log("N/A");
+        } else
         for(let i = 0; i < this.orders.length; i++) {
             console.log(this.orders[i].name);
         }
@@ -26,8 +30,12 @@ function Buyer(fullName, username, address, password) {
         console.log("Address: " + this.address);
         console.log("Password: " + this.password);
         console.log("Paintings with successful bids: ");
-        for(let i = 0; i < this.bidArrays.length; i++){
-            console.log(this.bidArrays[i].name + " with a bid of " + this.bidArrays[i].highestBid);
+        if(this.bidArrays.length == 0) {
+            console.log("N/A");
+        } else {
+            for (let i = 0; i < this.bidArrays.length; i++) {
+                console.log(this.bidArrays[i].name + " with a bid of " + this.bidArrays[i].highestBid);
+            }
         }
         this.printOrders();
     }
@@ -63,29 +71,4 @@ function Buyer(fullName, username, address, password) {
 
 }
 
-let Dave = new Buyer("Dave Baptist","daveB", "263564 Merrylane Road", "12345");
-let Mike = new Buyer("Mike Lee Torres", "mLee", "12345 Something Road", "iamcool69");
-console.log(Dave.username);
-console.log(Dave.address);
-console.log(Dave.password);
-let MonaLisa = new Painting("Mona Lisa", 40000, 40000);
-let Scream = new Painting("Scream", 25000, 12000);
-let ObamaPortrait = new Painting("Painting of Obama", 100000, 0);
-let LincolnPortrait = new Painting("Painting of Abraham Lincoln", 20000000, 0);
-Dave.insertBidItem(MonaLisa);
-Dave.insertBidItem(Scream);
-Dave.insertBidItem(ObamaPortrait);
-Dave.insertBidItem(LincolnPortrait);
-Dave.printBuyer();
-console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-Dave.setBidder(6900000, "Painting of Obama");
-Dave.setBidder(420, "Mona Lisa");
-Dave.removeBidItem("Scream");
-Dave.insertOrders(Scream);
-Dave.printBuyer();
-console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-Mike.printBuyer();
-console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-Dave.printBuyer();
-
-Mike.printBuyer();
+module.exports = {Buyer};
