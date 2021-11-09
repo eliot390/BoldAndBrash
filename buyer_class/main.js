@@ -12,7 +12,11 @@ let boldandBrash = new Painting("Bold and Brash", 99999999999999, 0);
 
 squid.insertOrders(boldandBrash);
 squid.insertOrders(MonaLisa);
+squid.setBidder(3000000, ObamaPortrait);
 squid.printBuyer();
-
 console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 sponge.printBuyer();
+console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+squid.setBidder(50, ObamaPortrait);
+console.log(squid.getOrderList());
+console.log(squid.getBidList());
