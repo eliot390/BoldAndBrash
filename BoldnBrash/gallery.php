@@ -1,42 +1,37 @@
 <?php
   include('session.php');
 
-  $sql = "SELECT primaryfunction.functionname, primaryfunction.functionnumber, COUNT(primary_func) AS 'count' FROM primaryfunction
-  LEFT JOIN resources ON  primaryfunction.functionnumber = resources.primary_func
-  GROUP BY functionnumber";
+  $sql = "SELECT images.id, images.name, images.filename, images.price, images.bid, images.artist FROM images
+  GROUP BY id";
   $result = $conn->query($sql);
-
-  $sql2 = "SELECT COUNT(primary_func) AS 'total' FROM resources";
-  $result2 = $conn->query($sql2);
 
   if ($result->num_rows > 0)
   {
-    echo "<body style='width: 99%; padding-left: 10px;'>
+    echo "<body id=galleryTable>
           <table class='table table-md'>
             <thead class='thead-light'>
-              <h1>Resource Report</h1>
+              <h1>Bold and Brash Gallery</h1>
               <tr>
-                <th scope='col'>Primary Function #</th>
-                <th scope='col'>Primary Function</th>
-                <th scope='col'>Total Resources</th>
+                <th scope='col'>ID #</th>
+                <th scope='col'>Title</th>
+                <th scope='col'>Artist</th>
+                <th scope='col'>Preview</th>
+                <th scope='col'>Price</th>
+                <th scope='col'>Bids</th>
               </tr>";
     // output data of each row
     while($row = $result->fetch_assoc())
     {
       echo "<tr>
-              <td>" . $row["functionnumber"] . "</td>
-              <td>" . $row["functionname"] . "</td>
-              <td>" . $row["count"] . "</td>
+              <td>" . $row["id"] . "</td>
+              <td>" . $row["name"] . "</td>
+              <td>" . $row["artist"] . "</td>
+              <td><img src=" . $row["filename"] . " id=image></td>
+              <td>$" . $row["price"] . "</td>
+              <td>" . $row["bid"] . "</td>
             </tr>";
     }
-    while($row = $result2->fetch_assoc())
-    {
-      echo "<tr>
-              <th></td>
-              <th style='font-weight: bold;'>Total: </td>
-              <th>" . $row["total"] . "</td>
-            </tr>";
-    }
+    
     echo "
           </table>
           <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
@@ -57,7 +52,7 @@
   <head>
     <meta charset="utf-8">
     <title>Resource Report</title>
-    <link rel="stylesheet" href="TEVG.css">
+    <link rel="stylesheet" href="bnb.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
 

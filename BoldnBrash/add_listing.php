@@ -1,23 +1,27 @@
 <?php
   include('session.php');
+  //include('artType.js');
 
   // check for submit
   if(isset($_POST['submit'])){
     $resource_name = mysqli_real_escape_string($conn, $_POST['resource_name']);
     $userID = $logged_in_user_id;
     $primary_func = mysqli_real_escape_string($conn, $_POST['primary_func']);
-    $secondary_func = mysqli_real_escape_string($conn, $_POST['secondary_func']);
+    /*$secondary_func = mysqli_real_escape_string($conn, $_POST['secondary_func']);
     if($secondary_func == 'Secondary Function')
     {
       $secondary_func = 'NULL';
-    }
+    }*/
     $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $distance = mysqli_real_escape_string($conn, $_POST['distance']);
+    #$distance = mysqli_real_escape_string($conn, $_POST['distance']);
     $cost = mysqli_real_escape_string($conn, $_POST['cost']);
-    $cost_unit = mysqli_real_escape_string($conn, $_POST['cost_unit']);
+    #$cost_unit = mysqli_real_escape_string($conn, $_POST['cost_unit']);
 
-    $query = "INSERT INTO resources(resource_name, userID, primary_func, secondary_func, description, distance, cost, cost_unit)
-    VALUES('$resource_name', $userID, $primary_func, $secondary_func, '$description', '$distance', '$cost', '$cost_unit')";
+    /*$query = "INSERT INTO resources(resource_name, userID, primary_func, secondary_func, description, distance, cost, cost_unit)
+    VALUES('$resource_name', $userID, $primary_func, $secondary_func, '$description', '$distance', '$cost', '$cost_unit')";*/
+
+    $query = "INSERT INTO resources(resource_name, userID, primary_func, description, cost)
+    VALUES('$resource_name', $userID, $primary_func, '$description', '$cost')";
 
     if(mysqli_query($conn, $query)){
       header('Location: index.php');
@@ -33,20 +37,20 @@
       <div class='row' id='logged-in'>
         <div class='col-md-11' id='ARtitle'>New Art Listing</div>
       </div>
-      <div class='row'>
+      <!--<div class='row'>
         <div id='tableHeading1' class='col-md-12'>Resource ID<br><span id=subtext>(assigned on save)</span></div>
-      </div>
+      </div>-->
       <div class='row'>
         <div id='tableHeading' class='col-md-4'>Owner</div>
-        <div class='col-md-4' style='font-size: 20px;	font-weight: 500;'>" . $row['displayName'] . "</div>
+        <div class='col-md-4' style='font-size: 20px;	font-weight: 500; color:rgb(249, 255, 14);'>" . $row['displayName'] . "</div>
       </div>
-      <form action='add_resource.php' method='POST'>
+      <form action='add_listing.php' method='POST'>
         <div class='row'>
           <div id='tableHeading' class='col-md-4'>Piece Name<span id=required>*</span><br><span id=subtext>(required)</span></div>
           <div class='col-md-6'><input type='text' class='form-control' name='resource_name' type='text' value=''></div>
         </div>
         <div class='row'>
-          <div id='tableHeading' class='col-md-4'>Medium</div>
+          <div id='tableHeading' class='col-md-4'>Medium<span id=required>*</span></div>
             <select name='primary_func' id='primary_func' style='margin-left: 10px; height:40px; width:150px;' class='btn btn-primary'>
               <option>Choose One</option>
               <option value='1'>Painting</option>
@@ -66,7 +70,7 @@
         <div class='row' id='cancelSave'>
           <div>
             <a class='btn btn-primary' href='index.php' role='button'>Main Menu</a>
-            <input name='reset' type='reset' value='Cancel' class='reset_button btn btn-default' />
+            <!-- <input name='reset' type='reset' value='Cancel' class='reset_button btn btn-default' /> -->
             <button class='btn btn-primary cancel' name='cancel' type='cancel'>Cancel</button>
             <button class='btn btn-primary submit' name='submit' type='submit'>Save</button>
           </div>
@@ -107,14 +111,16 @@ $select.on("change", function(){
 var x = 0;
 var arrayData = Array();
 
-function add_element_to_array()
-{
- arrayData[x] = document.getElementById("capabilities").value;
- //alert("Element: " + array[x] + " Added at index " + x);
- alert("\"" + arrayData[x] + "\"" + " added to capabilities");
- x++;
- document.getElementById("capabilities").value = "";
+function add_element_to_array(){
+  arrayData[x] = document.getElementById("capabilities").value;
+  //alert("Element: " + array[x] + " Added at index " + x);
+  alert("\"" + arrayData[x] + "\"" + " added to capabilities");
+  x++;
+  document.getElementById("capabilities").value = "";
 }
+
+
+
 </script>
 
 </html>

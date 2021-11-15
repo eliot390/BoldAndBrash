@@ -6,8 +6,8 @@ include('config.php');
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Search Resources</title>
-  <link rel="stylesheet" href="TEVG.css">
+  <title>Search Listings</title>
+  <link rel="stylesheet" href="bnb.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -17,7 +17,7 @@ include('config.php');
   <body>
     <div id='main'>
       <div class='row' id='logged-in'>
-        <div class='col-md-11' id='ARtitle'>Search Resources</div>
+        <div class='col-md-11' id='ARtitle'>Search Listings</div>
         <div class='col-md-1' id='ARtitle'><span id='close'></span></div>
       </div>
       <div class='row'>
@@ -25,27 +25,26 @@ include('config.php');
       </div>
       <form action="search_resources.php" method="POST">
         <div class='row'>
-          <div id='tableHeading' class='col-md-4'>Keyword<br><span id=subtext>(optional)</span></div>
-          <div class='col-md-8'><input type="text" name="keyword" class="form-control" value="<?php if(isset($_GET["keyword"])) echo $_GET["keyword"]; ?>"></div>
-        </div>
-        <div class='row'>
-          <div id='tableHeading' class='col-md-4'>Primary Function</div>
+          <div id='tableHeading' class='col-md-4'>Type of Art</div>
             <select name='primary_func' id='primary_func' style='margin-left: 15px; height:40px' class='btn btn-primary'>
-              <option>Primary Function</option>
-              <option value='1'>Transportation</option>
-              <option value='2'>Communications</option>
-              <option value='3'>Engineering</option>
-              <option value='4'>Search and Rescue</option>
-              <option value='5'>Education</option>
+              <option>Medium</option>
+              <option value='1'>Painting</option>
+              <option value='2'>Sculpture</option>
+              <option value='3'>Photography</option>
+              <option value='4'>Other</option>
+              <!--<option value='5'>Education</option>
               <option value='6'>Energy</option>
               <option value='7'>Firefighting</option>
-              <option value='8'>Human Services</option>
+              <option value='8'>Human Services</option>-->
             </select>
         </div>
         <div class='row'>
-          <div id='tableHeading' class='col-md-4'>Distance<br><span id=subtext>(optional)</span></div>
-          <div class='col-md-4'><input type="text" name="distance" class="form-control" value="<?php if(isset($_GET["distance"])) echo $_GET["distance"]; ?>" /></div>
-          <div>miles from PCC</div>
+          <div id='tableHeading' class='col-md-4'>Keyword<br><span id=subtext>(optional)</span></div>
+          <div class='col-md-3'><input type="text" name="keyword" class="form-control" value="<?php if(isset($_GET["keyword"])) echo $_GET["keyword"]; ?>"></div>
+        </div>
+        <div class='row'>
+          <div id='tableHeading' class='col-md-4'>Artist<br><span id=subtext>(optional)</span></div>
+          <div class='col-md-3'><input type="text" name="distance" class="form-control" value="<?php if(isset($_GET["distance"])) echo $_GET["distance"]; ?>" /></div>
         </div>
         <div class='row' id='cancelSave'>
           <div>
@@ -85,22 +84,23 @@ include('config.php');
             {
               $condition = " WHERE " . $condition;
             }
-            
+
             $sql_query = "SELECT * FROM `resources` JOIN certuser ON resources.userID=certuser.userID $condition ORDER BY distance ASC";
             $result = mysqli_query($conn, $sql_query);
 
              if(mysqli_num_rows($result) > 0)
               {
                 echo "<body>
-                      <table class=table>
+                      <table class=table id=searchTable>
                         <thead>
-                          <h2 style='text-align: center; margin-top: 30px;'>Search Results</h2>
+                          <h2 style='text-align: center; margin-top: -10px; color: rgb(249, 255, 14);'>Search Results</h2>
                           <tr>
-                            <th>Resource ID</th>
-                            <th>Resource Name</th>
-                            <th>Owner</th>
-                            <th>Cost/Unit</th>
-                            <th>Distance</th>
+                            <th>ID#</th>
+                            <th>Name</th>
+                            <th>Owner/Seller</th>
+                            <th>Cost</th>
+                            <th>Purchase</th>
+                            <th>Bid</th>
                           </tr>";
                    while($row = mysqli_fetch_array($result))
                   {
@@ -108,8 +108,10 @@ include('config.php');
                           <td>" . $row["resourceID"] . "</td>
                           <td>" . $row["resource_name"] . "</td>
                           <td>" . $row["displayName"] . "</td>
-                          <td>" . "$" . $row["cost"] . "/" . $row["cost_unit"] . "</td>
-                          <td>" . $row["distance"] . " mi." . "</td>
+                          <td>" . "$" . $row["cost"] . $row["cost_unit"] . "</td>
+                          <!--<td>" . $row["distance"] . " mi." . "</td>-->
+                          <td><a class='btn btn-sm btn-info' href='logout.php' role='button'>Purchase</a></td>
+                          <td><a class='btn btn-sm btn-info' href='logout.php' role='button'>Bid</a></td>
                           </tr>";
                   }
               }
@@ -117,7 +119,7 @@ include('config.php');
               {
                 echo "<div class='alert alert-warning' role='alert' style='margin-top: 30px; text-align: center; font-size: 20px;'>
                         <i class='fa fa-exclamation-triangle' aria-hidden='true'></i>
-                        <strong>Oops!</strong> No results found. <i class='fa fa-exclamation-triangle' aria-hidden='true'></i>
+                        <strong>Barnacles!</strong> No results found. <i class='fa fa-exclamation-triangle' aria-hidden='true'></i>
                       </div>";
               }
           }
