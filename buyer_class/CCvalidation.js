@@ -35,5 +35,5 @@ const luhnCheck = val => {
     return (checksum % 10) == 0;
 }
 
-validateCardNumber("0123 7654 4321 0190");
-validateCardNumber("584 8484 8");
+console.log(validateCardNumber("0123 7654 4321 0190")); // Output: valid number
+console.log(validateCardNumber("584 8484 8")); // Output: invalid number
