@@ -1,4 +1,6 @@
-function Buyer(fullName, username, address, password) {
+const {Order} = require('./order.js');
+
+function Buyer(fullName, username, address, password, email) {
 
     this.bidArrays = [];           //For bids on paintings
     this.orders = [];              //For successful orders
@@ -6,6 +8,7 @@ function Buyer(fullName, username, address, password) {
     this.username = username;       //Username for buyer
     this.address = address;         //Address for buyer
     this.password = password;       //Password for buyer
+    this.email = email;
 
     Buyer.prototype.printOrders = function() {
         console.log("Orders: ");
@@ -17,8 +20,9 @@ function Buyer(fullName, username, address, password) {
         }
     }
 
-    Buyer.prototype.insertOrders = function(painting) {
-        this.orders.push(painting);
+    Buyer.prototype.insertOrders = function(artistName, paintingName, payment, confirmation) {
+        let temp = Order(this.fullName, artistName, paintingName, this.address, payment, confirmation, this.email);
+        this.orders.push(temp);
     }
 
     Buyer.prototype.printBuyer = function() {
@@ -27,6 +31,7 @@ function Buyer(fullName, username, address, password) {
         console.log("Username: " + this.username);
         console.log("Address: " + this.address);
         console.log("Password: " + this.password);
+        console.log("Email: " + this.email);
         console.log("Paintings with successful bids: ");
         if(this.bidArrays.length === 0) {
             console.log("N/A");
@@ -56,7 +61,7 @@ function Buyer(fullName, username, address, password) {
     }
 
     Buyer.prototype.setBidder = function(bid, painting) {
-
+        let tempBuyer = new Buyer(this.fullName, this.username, this.address, this.password, this.email);
         for(let i = 0; i < this.bidArrays.length; i++){     //Checks to see if the buyer has a bid and wants to update it
             if(painting.name === this.bidArrays[i].name && this.bidArrays[i].price < bid){
                 this.bidArrays.splice(i, 1);
@@ -108,12 +113,20 @@ function Buyer(fullName, username, address, password) {
         return this.username;
     }
 
-    Buyer.prototype.getFullname = function(){
+    Buyer.prototype.getFull = function(){
         return this.fullName;
     }
 
-    Buyer.prototype.setFullname = function(fullName) {
+    Buyer.prototype.setFull = function(fullName) {
         this.fullName = fullName;
+    }
+
+    Buyer.prototype.setEmail = function(email) {
+        this.email = email;
+    }
+
+    Buyer.prototype.getEmail = function() {
+        return this.email;
     }
 
 }
