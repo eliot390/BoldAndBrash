@@ -26,3 +26,5 @@ function Order(buyer, artist, painting, address, payment, confirmation, email) {
         userChoice = "Email confirmation error occured.";
     }
 }
+
+module.exports = {Order};
