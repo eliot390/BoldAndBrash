@@ -26,6 +26,5 @@ function Painting(name, price, highestBid, artist, dimensions, medium, stock) {
     get getBid() {
         return this.highestBid;          // console.log(Painting.getBid);
     }
-}  
-  
+}
 module.exports = {Painting};
