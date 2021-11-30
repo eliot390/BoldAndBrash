@@ -17,5 +17,14 @@ function Painting(name, price, highestBid, artist, dimensions, medium, stock){
         console.log("Dimensions: " + this.dimensions);
         console.log("Medium: " + this.medium);
     }
-}
+    
+    set setBid(newBid, newHighest) {
+        this.newBid = newBid;
+        this.highestBid = newHighest;        // Painting.setBid = '0000000000'; 
+    }
+    
+    get getBid() {
+        return this.highestBid;          // console.log(Painting.getBid);
+    }
+    
 module.exports = {Painting};
