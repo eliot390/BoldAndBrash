@@ -4,8 +4,8 @@ const {Artist} = require('./Artist.js');
 const {Order} = require('./order.js');
 
 
-let squid = new Buyer("Squidward Tentacles", "STentacles", "18234 Bikini Bottom Road", "iamthebestmusician");
-let sponge = new Buyer("Spongebob Squarepants", "SSPants", "18235 Bikini Bottom Road", "squidwardisthebest");
+let squid = new Buyer("Squidward Tentacles", "STentacles", "18234 Bikini Bottom Road", "iamthebestmusician","stentacles@bbottom.com");
+let sponge = new Buyer("Spongebob Squarepants", "SSPants", "18235 Bikini Bottom Road", "squidwardisthebest","jellyfisher123@bbottom.com");
 let crab = new Artist("Eugene Krabs", "Money", "I want");
 let squirrel = new Artist("Sandy Cheeks", "Karate queen", "s1mpf0rsp0ngeb0b");
 
@@ -63,7 +63,7 @@ function viewAll(){
     }
 }
 
-/*
+
 //Taken from Eliot's CC Validation
 const validateCardNumber = number => {
     //Check if the number contains only numeric value
@@ -72,7 +72,7 @@ const validateCardNumber = number => {
 
     // Now remove any spaces from the credit card number
     // Update this if there are any other special characters like -
-    number = number.replace(/\s/g, "");
+   // number = number.replace(/\s/g, "");
 
     if (!regex.test(number)){
         console.log("invalid number");
@@ -112,15 +112,15 @@ const luhnCheck = val => {
     //Check if it is divisible by 10 or not.
     return (checksum % 10) == 0;
 }
-*/
+
 //
 
 
 
 
 function buyPainting(painting, cardNumber) {        //Allows buyer to buy painting
-    if(/* validateCardNumber(cardNumber) && */painting.stock > 0) {
-       /* user.insertOrders(painting.artist.getFullname(), painting.name, "card", "1"); */
+    if( validateCardNumber(cardNumber) && painting.stock > 0) {
+        user.insertOrders(painting.artist.getFullname(), painting.name, "card", "1", squid.getEmail());
         painting.stock--;
     }
 }
