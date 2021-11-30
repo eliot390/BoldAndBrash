@@ -5,7 +5,7 @@ const validateCardNumber = number => {
 
     // Now remove any spaces from the credit card number
     // Update this if there are any other special characters like -
-    number = number.replace (/\s/g, "");
+    number = number.replace(/\s+/g, '');
 
     if (!regex.test(number)){
         console.log("invalid number");

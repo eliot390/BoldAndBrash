@@ -1,4 +1,4 @@
-function Painting(name, price, highestBid, artist, dimensions, medium, stock){
+function Painting(name, price, highestBid, artist, dimensions, medium, stock) {
 
     this.namePainting = name;
     this.price = price;
@@ -26,5 +26,5 @@ function Painting(name, price, highestBid, artist, dimensions, medium, stock){
     get getBid() {
         return this.highestBid;          // console.log(Painting.getBid);
     }
-    
+}
 module.exports = {Painting};
